@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
-import { SwapiApi } from './api/swapi-api'
+import Searchbox from './modules/Searchbox';
+import Autocomplete from './modules/Autocomplete';
 
 const App: React.FC = () => {
-  let swapiApi: SwapiApi = new SwapiApi();
-  let res = swapiApi.search('r2');
-  res.then((x: any) => console.log(x));
   return (
     <div className="App">
-      <h1>swapi namesearch autocomplete</h1>
+      <h1>StarWarsApi Namesearch Autocomplete</h1>
+      <Searchbox />
+      <Autocomplete />
     </div>
   );
 }
