@@ -4,26 +4,36 @@ import {DebounceInput} from 'react-debounce-input';
 import { SwapiApi } from '../api/swapi-api'
 
 interface P {
-  callback: (x: any[]) => void
+  callback: (s: string, x: any[]) => void
 }
 interface S {
-  isBusy: boolean
+  isBusy: boolean,
+  searchString: string
 }
 
 class Searchbox extends React.Component<P, S> {
   constructor(p: P) {
     super(p);
     this.state = {
-      isBusy: false
+      isBusy: false,
+      searchString: ''
     }
 
   }
 
   swapiApi = new SwapiApi();
   search = (searchString: string) => {
-    this.setState({isBusy: true});
+    this.setState({
+      isBusy: true,
+      searchString: searchString
+    });
     let res = this.swapiApi.search(searchString);
-    res.then( (found: string[]) => {this.props.callback(found); this.setState({isBusy: false}); } );
+    res.then((found: string[]) => {
+      this.props.callback(this.state.searchString, found); 
+      this.setState({
+        isBusy: false
+      }); 
+    });
   }
 
   getSpinner = (isBusy: boolean) => {

@@ -5,6 +5,7 @@ import Autocomplete from './modules/Autocomplete';
 
 interface P {}
 interface S {
+  searchString: string,
   suggestions: string[]
 }
 
@@ -12,12 +13,13 @@ class App extends React.Component<P, S> {
   constructor(props: P) {
     super(props);
     this.state = {
+      searchString: '',
       suggestions: []
     }
   }
-  searchresult = (result: string[]) => {
-    console.log(result);
+  searchresult = (searchString: string, result: string[]) => {
     this.setState({
+      searchString,
       suggestions: result
     });
   }
@@ -26,7 +28,7 @@ class App extends React.Component<P, S> {
       <div className="App">
         <h1>StarWars Namesearch Autocomplete</h1>
         <Searchbox callback={this.searchresult}/>
-        <Autocomplete suggestions={this.state.suggestions} />
+        <Autocomplete suggestions={this.state.suggestions} searchString={this.state.searchString} />
       </div>
     );
   }

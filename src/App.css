@@ -1,10 +1,14 @@
 .App {
   text-align: center;
 }
-
 .spinner {
   margin: 0px 10px;
 }
 .no-show {
   visibility: hidden;
+}
+.found {
+  background-color: rgba(120, 250, 70, 0.5);
+  font-weight: 800;
+  border-radius: 10%;
 }
