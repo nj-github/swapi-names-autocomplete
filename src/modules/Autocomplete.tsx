@@ -1,9 +1,14 @@
 import React from 'react';
+import Suggestion from './Suggestion';
 
-const Autocomplete: React.FC = () => {
+interface P {
+	suggestions: string[]
+}
+
+const Autocomplete: React.FC<P> = (props: P) => {
   return (
     <div>
-      <h2>Autocomplete</h2>
+      {props.suggestions.map((s: string, i: number) => <Suggestion key={i} suggestion={s} />)}
     </div>
   );
 }

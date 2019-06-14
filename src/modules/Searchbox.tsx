@@ -23,7 +23,7 @@ class Searchbox extends React.Component<P, S> {
   search = (searchString: string) => {
     this.setState({isBusy: true});
     let res = this.swapiApi.search(searchString);
-    res.then( (found: any[]) => {this.props.callback(found); this.setState({isBusy: false}); } );
+    res.then( (found: string[]) => {this.props.callback(found); this.setState({isBusy: false}); } );
   }
 
   getSpinner = (isBusy: boolean) => {
@@ -37,8 +37,8 @@ class Searchbox extends React.Component<P, S> {
         <h5>Find anyone from StarWars:</h5>
         <div className={this.getSpinner(false)} role="status"></div>
         <DebounceInput
-            minLength={2}
-            debounceTimeout={400}
+            minLength={1}
+            debounceTimeout={300}
             onChange={(event: any) => {this.search(event.target.value);} } />
         <div className={this.getSpinner(this.state.isBusy)} role="status"></div>
       </div>
