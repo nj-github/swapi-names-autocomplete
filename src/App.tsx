@@ -27,7 +27,7 @@ class App extends React.Component<P, S> {
     return (
       <div className="App">
         <h1>StarWars Namesearch Autocomplete</h1>
-        <Searchbox callback={this.searchresult}/>
+        <Searchbox callback={this.searchresult} />
         <Autocomplete suggestions={this.state.suggestions} searchString={this.state.searchString} />
       </div>
     );
